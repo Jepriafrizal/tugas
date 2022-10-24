@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,109 +9,599 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'Curse',
+              style: new TextStyle(
+                fontWeight: FontWeight.normal,
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+            centerTitle: true,
+            leading: Icon(Icons.arrow_back_ios),
+            actions: [
+              Icon(Icons.more_vert),
+            ],
+            backgroundColor: Colors.orangeAccent,
+            elevation: 0,
+          ),
+          body: Stack(
+            children: <Widget>[
+              Container(
+                height: 300,
+                decoration: BoxDecoration(
+                    color: Colors.orangeAccent,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.elliptical(150, 150),
+                      bottomRight: Radius.elliptical(150, 150),
+                    )),
+              ),
+              Column(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(bottom: 0),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('Spanish',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Begginer',
+                                      style: new TextStyle(
+                                        color: Colors.orangeAccent,
+                                      ),
+                                    ),
+                                    IconButton(
+                                        icon: Icon(
+                                          Icons.expand_more,
+                                          color: Colors.orangeAccent,
+                                          size: 15,
+                                        ),
+                                        onPressed: () {}),
+                                  ],
+                                ),
+                                height: 30,
+                                width: 120,
+                                margin: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10)),
+                              ),
+                              Container(
+                                margin: EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(
+                                      Icons.diamond_rounded,
+                                      color: Colors.red,
+                                    ),
+                                    Icon(
+                                      Icons.diamond_rounded,
+                                      color: Colors.red,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 5),
+                                    ),
+                                    Text(
+                                      '2 Milestones',
+                                      style: new TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: new CircularPercentIndicator(
+                              radius: 60.0,
+                              animation: true,
+                              animationDuration: 1200,
+                              lineWidth: 5.0,
+                              percent: 0.4,
+                              center: new Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    '43 %',
+                                    style: new TextStyle(
+                                        color: (Colors.white),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30.0),
+                                  ),
+                                  Text(
+                                    'Completed',
+                                    style: new TextStyle(
+                                        color: (Colors.white),
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 15.0),
+                                  ),
+                                ],
+                              ),
+                              circularStrokeCap: CircularStrokeCap.butt,
+                              progressColor: Colors.white,
+                              backgroundColor: Colors.white70,
+                            ),
+                          ),
+                        ]),
+                  ),
+                  Expanded(
+                      child: GridView.count(
+                    crossAxisCount: 2,
+                    children: <Widget>[
+                      Card(
+                        margin: const EdgeInsets.all(40),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 60,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade400,
+                                            blurRadius: 10,
+                                            spreadRadius: 1,
+                                            offset: Offset(3, 4),
+                                          ),
+                                        ]),
+                                    child: Icon(
+                                      Icons.insert_drive_file_sharp,
+                                      color: Colors.orangeAccent,
+                                      size: 40,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Text(
+                                'Basics',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '4',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  '/5',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: LinearPercentIndicator(
+                                backgroundColor: Colors.grey.shade300,
+                                progressColor: Colors.orangeAccent,
+                                percent: 0.8,
+                                lineHeight: 5,
+                                barRadius: Radius.circular(18),
+                                linearStrokeCap: LinearStrokeCap.round,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        margin: const EdgeInsets.all(40),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 60,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade400,
+                                            blurRadius: 10,
+                                            spreadRadius: 1,
+                                            offset: Offset(3, 4),
+                                          ),
+                                        ]),
+                                    child: Icon(
+                                      Icons.business_center_rounded,
+                                      color: Colors.red,
+                                      size: 40,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Text(
+                                'Occupations',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '1',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  '/5',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: LinearPercentIndicator(
+                                backgroundColor: Colors.grey.shade300,
+                                progressColor: Colors.red,
+                                percent: 0.2,
+                                lineHeight: 5,
+                                barRadius: Radius.circular(18),
+                                linearStrokeCap: LinearStrokeCap.round,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        margin: const EdgeInsets.all(40),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 60,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade400,
+                                            blurRadius: 10,
+                                            spreadRadius: 1,
+                                            offset: Offset(3, 4),
+                                          ),
+                                        ]),
+                                    child: Icon(
+                                      Icons.chat,
+                                      color: Color.fromARGB(255, 41, 98, 188),
+                                      size: 40,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Text(
+                                'Conversation',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '3',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  '/5',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: LinearPercentIndicator(
+                                backgroundColor: Colors.grey.shade300,
+                                progressColor: Color.fromARGB(255, 41, 98, 188),
+                                percent: 0.6,
+                                lineHeight: 5,
+                                barRadius: Radius.circular(18),
+                                linearStrokeCap: LinearStrokeCap.round,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        margin: const EdgeInsets.all(40),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 60,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade400,
+                                            blurRadius: 10,
+                                            spreadRadius: 1,
+                                            offset: Offset(3, 4),
+                                          ),
+                                        ]),
+                                    child: Icon(
+                                      Icons.place,
+                                      color: Colors.green,
+                                      size: 40,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Text(
+                                'Places',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '1',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  '/5',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: LinearPercentIndicator(
+                                backgroundColor: Colors.grey.shade300,
+                                progressColor: Colors.green,
+                                percent: 0.2,
+                                lineHeight: 5,
+                                barRadius: Radius.circular(18),
+                                linearStrokeCap: LinearStrokeCap.round,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        margin: const EdgeInsets.all(40),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 60,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade400,
+                                            blurRadius: 10,
+                                            spreadRadius: 1,
+                                            offset: Offset(3, 4),
+                                          ),
+                                        ]),
+                                    child: Icon(
+                                      Icons.groups,
+                                      color: Colors.purple,
+                                      size: 40,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Text(
+                                'Family Members',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '3',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  '/5',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: LinearPercentIndicator(
+                                backgroundColor: Colors.grey.shade300,
+                                progressColor: Colors.purple,
+                                percent: 0.6,
+                                lineHeight: 5,
+                                barRadius: Radius.circular(18),
+                                linearStrokeCap: LinearStrokeCap.round,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        margin: const EdgeInsets.all(40),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 60,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade400,
+                                            blurRadius: 10,
+                                            spreadRadius: 1,
+                                            offset: Offset(3, 4),
+                                          ),
+                                        ]),
+                                    child: Icon(
+                                      Icons.apple_sharp,
+                                      color: Color.fromARGB(255, 0, 140, 255),
+                                      size: 40,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Text(
+                                'Foods',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '2',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  '/5',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: LinearPercentIndicator(
+                                backgroundColor: Colors.grey.shade300,
+                                progressColor: Color.fromARGB(255, 0, 140, 255),
+                                percent: 0.4,
+                                lineHeight: 5,
+                                barRadius: Radius.circular(18),
+                                linearStrokeCap: LinearStrokeCap.round,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )),
+                ],
+              )
+            ],
+          )),
     );
   }
 }
